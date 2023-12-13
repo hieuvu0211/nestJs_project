@@ -33,24 +33,24 @@ export class OrderController {
   createOrder(
     @Body()
     data: {
-      customer_id: number;
-      staff_id: number;
+      id_Cus: number;
+      id_Staff: number;
       status: string;
       shipping_fee?: number;
       total?: number;
-      coupon_id: number;
+      id_Coupon: number;
       canceled_at?: string;
       completed_at?: string;
       delivery_at?: string;
     },
   ) {
     const {
-      customer_id,
-      staff_id,
+      id_Cus,
+      id_Staff,
       status,
       shipping_fee,
       total,
-      coupon_id,
+      id_Coupon,
       canceled_at,
       completed_at,
       delivery_at,
@@ -62,9 +62,9 @@ export class OrderController {
       canceled_at,
       completed_at,
       delivery_at,
-      couponName: { connect: { id: coupon_id } },
-      customerName: { connect: { id: customer_id } },
-      staffName: { connect: { id: staff_id } },
+      couponName: { connect: { id_Coupon: id_Coupon } },
+      customerName: { connect: { id_User: id_Cus } },
+      staffName: { connect: { id_User: id_Staff } },
     });
   }
 
@@ -83,7 +83,7 @@ export class OrderController {
       delivery_at = new Date(dto.delivery_at);
     }
     return this.orderService.updateOrder({
-      where: { id: Number(id) },
+      where: { id_Order: Number(id) },
       data: {
         ...dto,
         canceled_at: canceled_at,

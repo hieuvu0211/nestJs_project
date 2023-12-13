@@ -15,7 +15,7 @@ export class CategoryService {
     try {
       const category = await this.prismaService.category.findUnique({
         where: {
-          id: Id,
+          id_Cate: Id,
         },
       });
       if (category) {
@@ -32,7 +32,7 @@ export class CategoryService {
         data: {
           name: dto.name,
           description: dto.description,
-          image: dto.image,
+          image_Cate: dto.image_Cate,
           status: dto.status,
         },
       });
@@ -48,12 +48,12 @@ export class CategoryService {
     try {
       const update = await this.prismaService.category.update({
         where: {
-          id: Number(id),
+          id_Cate: Number(id),
         },
         data: {
           name: dto.name,
           description: dto.description,
-          image: dto.image,
+          image_Cate: dto.image_Cate,
           status: dto.status,
         },
       });
@@ -67,7 +67,7 @@ export class CategoryService {
     try {
       await this.prismaService.category.delete({
         where: {
-          id: Number(id),
+          id_Cate: Number(id),
         },
       });
       return {

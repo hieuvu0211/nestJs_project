@@ -12,7 +12,7 @@ export class UserService {
 
     if(token.role === this.config.get('SUPPER_PERMISSIONS')){
       return await this.prisma.user.update({
-        where: { id: id },
+        where: { id_User: id },
         data: dto,
       });
     }
@@ -21,7 +21,7 @@ export class UserService {
         const uname = String(token.username);
         const user = await this.prisma.user.findFirst({
           where: {
-            id: id,
+            id_User: id,
             username: uname
           },
         });
@@ -45,7 +45,7 @@ export class UserService {
           const hash = await argon2.hash(dto.newPassword);
           const update = await this.prisma.user.update({
             where: {
-              id: id,
+              id_User: id,
               username: uname
             },
             data: {
@@ -70,7 +70,7 @@ export class UserService {
       try {
         const deleteUser = await this.prisma.user.delete({
           where: {
-            id: idDelete,
+            id_User: idDelete,
           },
         });
         return deleteUser;
@@ -82,14 +82,14 @@ export class UserService {
       try {
         const user = await this.prisma.user.findUnique({
           where: {      
-              id: idDelete,
+              id_User: idDelete,
               username: uname,
           },
         });
         if (user) {
           const deleteUser = await this.prisma.user.delete({
             where: {
-              id: idDelete,
+              id_User: idDelete,
             },
           });
           return deleteUser;

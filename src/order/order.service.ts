@@ -21,7 +21,7 @@ export class OrderService {
     try {
       const order = await this.prisma.order.findUnique({
         where: {
-          id: id,
+          id_Order: id,
         },
       });
       if (order) {
@@ -85,7 +85,7 @@ export class OrderService {
     try {
       await this.prisma.order.delete({
         where: {
-          id: id,
+          id_Order: id,
         },
       });
       return {

@@ -32,7 +32,7 @@ export class CartItemService {
     }
   }
 
-  async getCartitemById(id: number): Promise<CartItem> {
+  async getCartitemById(id: number): Promise<Cart_Item_Dto> {
     try {
       const cart_item = await this.prisma.cartItem.findUnique({
         where: {

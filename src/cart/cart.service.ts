@@ -34,7 +34,7 @@ export class CartService {
       const cart = await this.prisma.cart.findMany({
         where: {
           user: {
-            id: id,
+            id_User: id,
           },
         },
       });
@@ -50,7 +50,7 @@ export class CartService {
     try {
       const cart = await this.prisma.cart.update({
         where: {
-          id: id,
+          id_Cart: id,
         },
         data: dto,
       });
@@ -64,7 +64,7 @@ export class CartService {
 
   async deleteCart(id: number) {
     try {
-      await this.prisma.cart.delete({ where: { id: id } });
+      await this.prisma.cart.delete({ where: { id_Cart: id } });
       return { msg: 'delete cart successfully' };
     } catch (error) {
       throw new Error('can not delete cart with id:' + id);

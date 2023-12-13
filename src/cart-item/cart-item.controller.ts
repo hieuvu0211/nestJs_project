@@ -29,16 +29,16 @@ export class CartItemController {
   createCartItem(
     @Body()
     data: {
-      cart_id: number;
-      product_id: number;
+      id_Cart: number;
+      id_Pro: number;
       quantity: number;
       price: number;
     },
   ): Promise<Cart_Item_Dto> {
-    const { cart_id, product_id, quantity, price } = data;
+    const { id_Cart, id_Pro, quantity, price } = data;
     return this.cart_item_service.createCartItem({
-      cartName: { connect: { id: cart_id } },
-      ProductName: { connect: { id: product_id } },
+      cartName: { connect: { id_Cart: id_Cart } },
+      ProductName: { connect: { id_Pro: id_Pro } },
       quantity,
       price,
     });

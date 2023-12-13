@@ -41,7 +41,7 @@ export class ReviewService {
     try {
       const review = await this.prisma.review.findUnique({
         where: {
-          id: id,
+          id_Review: id,
         },
       });
       if (review) {
@@ -74,7 +74,7 @@ export class ReviewService {
         };
       }
     } catch (error) {
-      throw new Error('can not update review' + param.where.id);
+      throw new Error('can not update review' + param.where.id_Review);
     }
   }
 
@@ -92,7 +92,7 @@ export class ReviewService {
         };
       }
     } catch (error) {
-      throw new Error('can not delete review' + param.where.id);
+      throw new Error('can not delete review' + param.where.id_Review);
     }
   }
 }

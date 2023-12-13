@@ -6,11 +6,10 @@ export class CategoryDto {
   name: string;
 
   @IsString()
-  @IsNotEmpty()
   description: string;
 
   @IsString()
-  image?: string;
+  image_Cate?: string;
 
   @IsString()
   @IsNotEmpty()

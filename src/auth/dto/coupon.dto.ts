@@ -5,7 +5,9 @@ export class CouponDto {
   @IsNotEmpty()
   code: string;
 
-  type?: string;
+  @IsString()
+  @IsNotEmpty()
+  type: string;
 
   @IsNumber()
   @IsNotEmpty()
@@ -19,12 +21,10 @@ export class CouponDto {
   @IsNotEmpty()
   end_date: Date;
 
-  @IsNumber()
-  @IsNotEmpty()
+  
   min_spend: number;
 
-  @IsNumber()
-  @IsNotEmpty()
+  
   max_spend: number;
 
   @IsNumber()

@@ -29,25 +29,25 @@ export class OrderProductController {
   createNew(
     @Body()
     data: {
-      order_id: number;
-      product_id: number;
+      id_Order: number;
+      id_Pro: number;
       quantity?: number;
       price?: number;
     },
   ): Promise<Order_Product> {
-    const { order_id, product_id, quantity, price } = data;
+    const { id_Order, id_Pro, quantity, price } = data;
     return this.opService.create({
       quantity,
       price,
-      order: { connect: { id: order_id } },
-      product: { connect: { id: product_id } },
+      order: { connect: { id_Order: id_Order } },
+      product: { connect: { id_Pro: id_Pro } },
     });
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() dto: OrderProductDto) {
     return this.opService.update({
-      where: { id: Number(id) },
+      where: { id_Order_Pro: Number(id) },
       data: {
         ...dto,
       },

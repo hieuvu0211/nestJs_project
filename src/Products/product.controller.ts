@@ -43,8 +43,10 @@ export class ProductController {
       quantity: number;
       sold?: number;
       status: string;
-      image?: string;
-      category_id: number;
+      feature?: boolean;
+      slug: string;
+      image_Pro?: string;
+      id_Cate: number;
     },
   ): Promise<Product> {
     const {
@@ -55,8 +57,10 @@ export class ProductController {
       quantity,
       sold,
       status,
-      image,
-      category_id,
+      feature,
+      slug,
+      image_Pro,
+      id_Cate,
     } = productData;
     return await this.productService.createProduct({
       name,
@@ -66,9 +70,11 @@ export class ProductController {
       quantity,
       sold,
       status,
-      image,
+      feature,
+      slug,
+      image_Pro,
       nameCategory: {
-        connect: { id: category_id },
+        connect: { id_Cate: id_Cate },
       },
     });
   }
@@ -77,7 +83,7 @@ export class ProductController {
   async updateProduct(
     @Param('id') id: string,
     @Body()
-    dto: ProductDto,
+    dto: Product,
   ): Promise<Product> {
     return await this.productService.updateProduct(id, dto);
   }

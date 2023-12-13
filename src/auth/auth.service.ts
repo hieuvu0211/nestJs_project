@@ -4,6 +4,7 @@ import { AuthDto } from './dto';
 import * as agron2 from 'argon2';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
+import { LoginDto } from './dto/login.dto';
 
 @Injectable({})
 export class AuthSevice {
@@ -13,7 +14,7 @@ export class AuthSevice {
     private config: ConfigService,
   ) {}
 
-  async login(dto: AuthDto) {
+  async login(dto: LoginDto) {
     //find user
     const user = await this.prisma.user.findFirst({
       where: {
@@ -74,6 +75,7 @@ export class AuthSevice {
     //save new user with hash password in the database
     const user = await this.prisma.user.create({
       data: {
+        ...dto,
         username: dto.username,
         password: hash,
         created_at: new Date(),

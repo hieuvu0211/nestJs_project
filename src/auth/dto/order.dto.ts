@@ -3,11 +3,11 @@ import { IsNotEmpty, IsNumber, IsString, isNotEmpty } from 'class-validator';
 export class OrderDto {
   @IsNumber()
   @IsNotEmpty()
-  customer_id: number;
+  id_Cus: number;
 
   @IsNumber()
   @IsNotEmpty()
-  staff_id: number;
+  id_Staff: number;
 
   @IsString()
   @IsNotEmpty()
@@ -21,7 +21,7 @@ export class OrderDto {
 
   @IsNumber()
   @IsNotEmpty()
-  coupon_id: number;
+  id_Coupon: number;
 
   canceled_at?: string;
 

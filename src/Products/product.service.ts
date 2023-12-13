@@ -20,7 +20,7 @@ export class ProductService {
   async getProductById(id: string) {
     try {
       const product = await this.prisma.product.findUnique({
-        where: { id: Number(id) },
+        where: { id_Pro: Number(id) },
       });
       if (product) {
         return product;
@@ -31,21 +31,21 @@ export class ProductService {
   }
 
   async createProduct(data: Prisma.ProductCreateInput): Promise<Product> {
-    console.log('dto = ', data);
     try {
       const product = await this.prisma.product.create({
         data: data,
       });
       return product;
     } catch (error) {
-      throw new ForbiddenException('can not create product');
+      console.log(error.message);
+      throw new ForbiddenException("can't create product");
     }
   }
 
-  async updateProduct(id: string, data: ProductDto): Promise<Product> {
+  async updateProduct(id: string, data: Product): Promise<Product> {
     try {
       const product = await this.prisma.product.update({
-        where: { id: Number(id) },
+        where: { id_Pro: Number(id) },
         data: data,
       });
       return product;
@@ -56,7 +56,7 @@ export class ProductService {
 
   async deleteProduct(id: number): Promise<object> {
     try {
-      await this.prisma.product.delete({ where: { id: id } });
+      await this.prisma.product.delete({ where: { id_Pro: id } });
       return {
         msg: 'product deleted',
       };

@@ -7,19 +7,23 @@ export class AuthDto {
   @IsNotEmpty()
   username: string;
 
+  @IsString()
   first_name: string;
 
+  @IsString()
   last_name: string;
 
+  @IsString()
   email: string;
 
+  @IsString()
   address: string;
 
+  @IsString()
   city: string;
 
-  country: string;
-
-  phone_number: string;
+  @IsString()
+  phone: string;
 
   created_at: string;
 

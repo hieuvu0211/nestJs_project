@@ -35,7 +35,7 @@ export class OrderProductService {
     try {
       const item = await this.prisma.order_Product.findUnique({
         where: {
-          id: id,
+          id_Order_Pro: id,
         },
       });
       if (item) {
@@ -72,7 +72,7 @@ export class OrderProductService {
     try {
       await this.prisma.order_Product.delete({
         where: {
-          id: id,
+          id_Order_Pro: id,
         },
       });
       return {

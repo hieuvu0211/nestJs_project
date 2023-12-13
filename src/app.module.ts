@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 
 import { authModule } from './auth/auth.module';
-import { BookmarkModule } from './bookmark/bookmark.module';
 import { UserModule } from './user/user.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
@@ -22,7 +21,6 @@ import { ReviewModule } from './review/review.module';
       // load: [configuration],
     }),
     authModule,
-    BookmarkModule,
     UserModule,
     PrismaModule,
     CategoryModule,
@@ -35,6 +33,6 @@ import { ReviewModule } from './review/review.module';
     ReviewModule,
   ],
   controllers: [],
-  providers: [OrderService],
+  providers: [],
 })
 export class AppModule {}

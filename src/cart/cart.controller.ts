@@ -20,10 +20,10 @@ export class CartController {
   }
 
   @Post()
-  createCart(@Body() data: { customer_id: number }): Promise<Cart> {
-    const { customer_id } = data;
+  createCart(@Body() data: { id_Cus: number }): Promise<Cart> {
+    const { id_Cus } = data;
     return this.cartService.createCart({
-      user: { connect: { id: customer_id } },
+      user: { connect: { id_User: id_Cus } },
     });
   }
 

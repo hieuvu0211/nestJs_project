@@ -21,7 +21,7 @@ export class CouponService {
     try {
       const coupon = await this.prisma.coupon.findUnique({
         where: {
-          id: id,
+          id_Coupon: id,
         },
       });
       if (coupon) {
@@ -64,7 +64,7 @@ export class CouponService {
       const eDate = new Date(dto.end_date);
       const coupon = await this.prisma.coupon.update({
         where: {
-          id: id,
+          id_Coupon: id,
         },
         data: {
           code: dto.code,
@@ -89,7 +89,7 @@ export class CouponService {
 
   async DeleteCoupon(id: number) {
     try {
-      await this.prisma.coupon.delete({ where: { id: id } });
+      await this.prisma.coupon.delete({ where: { id_Coupon: id } });
       return {
         msg: 'Coupon deleted successfully',
       };

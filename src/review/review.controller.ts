@@ -32,13 +32,13 @@ export class ReviewController {
   @Patch(':id')
   update(@Param('id') id: string, @Body() review: Prisma.ReviewUpdateInput) {
     return this.reviewService.update({
-      where: { id: Number(id) },
+      where: { id_Review: Number(id) },
       data: review,
     });
   }
 
   @Delete(':id')
   delete(@Param('id') id: string) {
-    return this.reviewService.delete({ where: { id: Number(id) } });
+    return this.reviewService.delete({ where: { id_Review: Number(id) } });
   }
 }
