@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { CategoryDto } from 'src/auth/dto';
+import { Prisma } from '@prisma/client';
 
 @Controller('category')
 export class CategoryController {
@@ -25,13 +26,16 @@ export class CategoryController {
   }
 
   @Post()
-  async createCategory(@Body() dto: CategoryDto) {
+  async createCategory(@Body() dto: Prisma.CategoryCreateInput) {
     return await this.categoryService.createNewCategory(dto);
   }
 
   @Patch(':id')
-  async updateCategory(@Param('id') id: string, @Body() dto: CategoryDto) {
-    return await this.categoryService.updateCategory(id, dto);
+  async updateCategory(@Param('id') id: string, @Body() dto: Prisma.CategoryUpdateInput) {
+    return await this.categoryService.updateCategory({
+      where: { id_Cate: Number(id) },
+      data: dto,
+    });
   }
 
   @Delete(':id')

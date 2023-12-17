@@ -38,6 +38,6 @@ export class ProductDto {
   @IsNotEmpty()
   status: string;
 
-  @IsNumber()
+  @IsBoolean()
   feature?: boolean;
 }

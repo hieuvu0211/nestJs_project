@@ -48,7 +48,6 @@ model Category {
   id_Cate     Int       @id @default(autoincrement())
   name        String
   description String?   @db.Text
-  image_Cate  String?   @default("/images/")
   status      String //active, inactive, deleted
   created_at  DateTime  @default(now())
   updated_at  DateTime? @updatedAt
@@ -60,7 +59,6 @@ model Product {
   id_Pro        Int             @id @default(autoincrement())
   id_Cate       Int // Tham chiếu đến bảng Category
   name          String
-  image_Pro     String?         @default("/images/")
   description   String?         @db.Text
   price         Float
   discount      Float

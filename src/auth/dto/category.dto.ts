@@ -9,9 +9,6 @@ export class CategoryDto {
   description: string;
 
   @IsString()
-  image_Cate?: string;
-
-  @IsString()
   @IsNotEmpty()
   status: string;
 }

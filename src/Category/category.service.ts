@@ -1,4 +1,5 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import { CategoryDto } from 'src/auth/dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 // import { Category, Product} from '@prisma/client'
@@ -26,17 +27,13 @@ export class CategoryService {
     }
   }
 
-  async createNewCategory(dto: CategoryDto) {
+  async createNewCategory(dto: Prisma.CategoryCreateInput) {
+    console.log("dto cate = ", dto);
     try {
-      const updateCategory = await this.prismaService.category.create({
-        data: {
-          name: dto.name,
-          description: dto.description,
-          image_Cate: dto.image_Cate,
-          status: dto.status,
-        },
+      const createCategory = await this.prismaService.category.create({
+        data: dto,
       });
-      return updateCategory;
+      return createCategory;
     } catch (error) {
       throw new ForbiddenException(
         'invalid create category! please try again!',
@@ -44,18 +41,15 @@ export class CategoryService {
     }
   }
 
-  async updateCategory(id: string, dto: CategoryDto) {
+  async updateCategory(param: {
+    data: Prisma.CategoryUpdateInput;
+    where: Prisma.CategoryWhereUniqueInput;
+  }) {
     try {
+      const { data, where } = param;
       const update = await this.prismaService.category.update({
-        where: {
-          id_Cate: Number(id),
-        },
-        data: {
-          name: dto.name,
-          description: dto.description,
-          image_Cate: dto.image_Cate,
-          status: dto.status,
-        },
+        data,
+        where,
       });
       return update;
     } catch (error) {
